@@ -8,7 +8,7 @@ WORKDIR /app
 COPY ProjectTracker-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the port Spring Boot runs on
-EXPOSE 10000
+
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
