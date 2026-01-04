@@ -1,14 +1,16 @@
-# Use lightweight Java 21 runtime
-FROM eclipse-temurin:21-jre
+# Use official Tomcat image
+FROM tomcat:11-jre17  # Tomcat 11 supports JSPs; you can also use tomcat:11-jre21 if needed
 
-# Set working directory
-WORKDIR /app
+# Remove default webapps
+RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Copy the jar into the container
-COPY ProjectTracker-0.0.1-SNAPSHOT.jar app.jar
+# Set working directory (optional)
+WORKDIR /usr/local/tomcat/webapps/
 
-# Expose the port Spring Boot runs on
+# Copy your WAR file into the webapps folder
+COPY ProjectTracker-0.0.1-SNAPSHOT.war ROOT.war
 
 
-# Run the application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# Start Tomcat
+CMD ["catalina.sh", "run"]
