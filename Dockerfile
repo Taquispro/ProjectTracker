@@ -5,7 +5,7 @@ FROM eclipse-temurin:21-jre
 WORKDIR /app
 
 # Copy the jar into the container
-COPY target/ProjectTracker-0.0.1-SNAPSHOT.jar app.jar
+COPY ProjectTracker-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the port Spring Boot runs on
 EXPOSE 8080
