@@ -1,16 +1,13 @@
-# Use official Tomcat 11 with JRE 21
-FROM tomcat:11.0.22-jdk21-temurin
+# Use official Tomcat 11 with Java 21 (Temurin) taqu
+FROM tomcat:11-jdk21-temurin
 
-# Remove default webapps
+# Remove default webapps 
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-# Set working directory
-WORKDIR /usr/local/tomcat/webapps/
+# Copy your WAR file into webapps as ROOT.war
+COPY ProjectTracker-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
 
-# Copy WAR file into Tomcat
-COPY ProjectTracker-0.0.1-SNAPSHOT.war ROOT.war
-
-# Expose Tomcat port
+# Expose default Tomcat port
 EXPOSE 8080
 
 # Start Tomcat
