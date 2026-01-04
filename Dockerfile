@@ -1,14 +1,14 @@
-# Use official Java 21 JDK image
-FROM eclipse-temurin:21-jdk-jammy
+# Use lightweight Java 21 runtime
+FROM eclipse-temurin:21-jre
 
-# Set working directory inside container
+# Set working directory
 WORKDIR /app
 
-# Copy the built JAR into container
+# Copy the jar into the container
 COPY target/ProjectTracker-0.0.1-SNAPSHOT.jar app.jar
 
-# Expose the port (Render will map automatically)
+# Expose the port Spring Boot runs on
 EXPOSE 8080
 
-# Run the Spring Boot JAR
+# Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
